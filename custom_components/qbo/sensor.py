@@ -1,8 +1,9 @@
 """Sensor platform for blueprint."""
 from homeassistant.helpers.entity import Entity
 
-from .const import ATTRIBUTION, DEFAULT_NAME, DOMAIN_DATA, ICON
+from .const import ATTRIBUTION, DEFAULT_NAME, DOMAIN_DATA, ICON, VERSION
 
+__version__ = VERSION
 
 async def async_setup_platform(
     hass, config, async_add_entities, discovery_info=None
