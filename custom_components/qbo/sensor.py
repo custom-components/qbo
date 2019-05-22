@@ -19,6 +19,7 @@ class QboSensor(Entity):
         self.hass = hass
         self.attr = {}
         self._state = None
+        self._unique_id = None
         self._name = config.get("name", DEFAULT_NAME)
 
     async def async_update(self):
@@ -26,10 +27,9 @@ class QboSensor(Entity):
         # Send update "signal" to the component
         await self.hass.data[DOMAIN_DATA]["client"].update_data()
 
-
         # Get new data (if any)
         name = self.hass.data[DOMAIN_DATA].get("name", self.name)
-        maintenance_status = self.hass.data[DOMAIN_DATA]["maintenance_status"]
+        maintenance_status = self.hass.data[DOMAIN_DATA].get("maintenance_status", None)
         available = self.hass.data[DOMAIN_DATA].get("available", False)
         machine_info = self.hass.data[DOMAIN_DATA].get("machine_info", None)
 
@@ -39,10 +39,16 @@ class QboSensor(Entity):
         self._name = name
         self._available = available
 
+        if self.available:
+            self._state = "on"
+            self._state = None
+
         # Set/update attributes
         self.attr["attribution"] = ATTRIBUTION
         self.attr["name"] = name
 
+        if maintenance_status is None:
+            return
         for key,value in vars(maintenance_status).items():
             self.attr[key[1:]] = value
 
@@ -69,3 +75,7 @@ class QboSensor(Entity):
     def device_state_attributes(self):
         """Return the state attributes."""
         return self.attr
+
+    @property
+    def unique_id(self):
+        return self._unique_id
