@@ -3,6 +3,10 @@
   "name": "Qbo",
   "documentation": "https://github.com/custom-components/qbo",
   "dependencies": [],
-  "codeowners": ["@SebRut"],
-  "requirements": ["python-qbo==0.2.0"]
+  "codeowners": [
+    "@SebRut"
+  ],
+  "requirements": [
+    "python-qbo==0.2.0"
+  ]
 }

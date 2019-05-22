@@ -1,6 +1,5 @@
 [
   "https://raw.githubusercontent.com/custom-components/qbo/develop/custom_components/qbo/const.py",
   "https://raw.githubusercontent.com/custom-components/qbo/develop/custom_components/qbo/manifest.json",
-  "https://raw.githubusercontent.com/custom-components/qbo/develop/custom_components/qbo/sensor.py",
-  "https://raw.githubusercontent.com/custom-components/qbo/develop/custom_components/qbo/services.yaml"
+  "https://raw.githubusercontent.com/custom-components/qbo/develop/custom_components/qbo/sensor.py"
 ]
