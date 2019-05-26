@@ -2,8 +2,8 @@
 # Base component constants
 DOMAIN = "qbo"
 DOMAIN_DATA = "{}_data".format(DOMAIN)
-VERSION = "0.0.1"
-PLATFORMS = [ "sensor"]
+VERSION = "0.1.0"
+PLATFORMS = ["sensor"]
 REQUIRED_FILES = [
     "const.py",
     "manifest.json",
