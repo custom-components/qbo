@@ -5,6 +5,7 @@ from .const import ATTRIBUTION, DEFAULT_NAME, DOMAIN_DATA, ICON, VERSION
 
 __version__ = VERSION
 
+
 async def async_setup_platform(
     hass, config, async_add_entities, discovery_info=None
 ):  # pylint: disable=unused-argument
@@ -29,18 +30,20 @@ class QboSensor(Entity):
 
         # Get new data (if any)
         name = self.hass.data[DOMAIN_DATA].get("name", self.name)
-        maintenance_status = self.hass.data[DOMAIN_DATA].get("maintenance_status", None)
+        maintenance_status = self.hass.data[DOMAIN_DATA].get(
+            "maintenance_status", None)
         available = self.hass.data[DOMAIN_DATA].get("available", False)
         machine_info = self.hass.data[DOMAIN_DATA].get("machine_info", None)
 
         if machine_info is not None:
-            self._unique_id = machine_info.mac_address.replace(":","_")
+            self._unique_id = machine_info.mac_address.replace(":", "_")
 
         self._name = name
         self._available = available
 
         if self.available:
-            self._state = "on"
+            self._state = "On"
+        else:
             self._state = None
 
         # Set/update attributes
@@ -49,7 +52,7 @@ class QboSensor(Entity):
 
         if maintenance_status is None:
             return
-        for key,value in vars(maintenance_status).items():
+        for key, value in vars(maintenance_status).items():
             self.attr[key[1:]] = value
 
     @property
